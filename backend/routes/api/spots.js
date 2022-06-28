@@ -8,7 +8,7 @@ router.get(
     asyncHandler(async (req, res) => {
         console.log('spot get')
         const spots = await Spot.findAll({
-            // include: User,
+            include: User,
             order: [['id','DESC']]
         });
         return res.json(spots)
