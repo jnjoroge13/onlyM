@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import spots, { thunkGetAllSpots } from '../../store/spots';
+import spots, { thunkAddSpot, thunkGetAllSpots } from '../../store/spots';
 
 export default function SpotsForm() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
+    const sessionUser = useSelector((state) => state.session.user);
     // console.log(selectorSpots[1])
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -15,7 +16,8 @@ export default function SpotsForm() {
 
     async function onSubmit(e) {
         e.preventDefault();
-
+        // console.log('f')
+        dispatch(thunkAddSpot({userId:sessionUser.id,state, address, city, name,price, imageUrl}))
     }
     useEffect(() => {
         dispatch(thunkGetAllSpots())

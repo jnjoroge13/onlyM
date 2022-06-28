@@ -40,19 +40,16 @@ export const thunkGetAllSpots = (spots) => async (dispatch) => {
     }
 };
 
-// export const login = (user) => async (dispatch) => {
-//     const { credential, password } = user;
-//     const response = await csrfFetch('/api/session', {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         credential,
-//         password,
-//       }),
-//     });
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-// };
+export const thunkAddSpot = (spot) => async (dispatch) => {
+    const response = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+    });
+    const data = await response.json();
+    dispatch(actionAddSpot(data));
+    return response;
+};
 // export const login = (user) => async (dispatch) => {
 //     const { credential, password } = user;
 //     const response = await csrfFetch('/api/session', {
@@ -85,9 +82,9 @@ const spots = (state = {}, action) => {
     const newState = { ...state };
     switch (action.type) {
         case ADD_SPOT:
-            newState = Object.assign({}, state);
-            newState.user = action.payload;
-            return newState;
+            return {
+                ...state, [action.spot.id]:action.spot
+            }
 
         case GET_SPOTS:
             action.spots.forEach(spot => {

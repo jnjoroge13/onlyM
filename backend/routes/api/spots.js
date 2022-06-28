@@ -4,7 +4,7 @@ const { Spot, User} = require('../../db/models');
 const router = express.Router();
 
 router.get(
-    '/',
+    '',
     asyncHandler(async (req, res) => {
         console.log('spot get')
         const spots = await Spot.findAll({
@@ -14,5 +14,12 @@ router.get(
         return res.json(spots)
     })
 )
-
+router.post(
+    '',
+    asyncHandler(async (req, res) => {
+        const spot = await Spot.create(req.body);
+        res.json(spot)
+        return res
+    })
+);
 module.exports = router
