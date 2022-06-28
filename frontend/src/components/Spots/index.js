@@ -4,14 +4,15 @@ import spots, { thunkGetAllSpots } from '../../store/spots';
 
 export default function SpotsForm() {
     const dispatch = useDispatch()
-    const selectorSpots = useSelector(state => state['spots'])
+    const selectorSpots = useSelector(state => Object.values(state.spots))
+    // console.log(selectorSpots[1])
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [imageUrl, setImageUrl] = useState('')
-    const [spots,setSpots] = useState('')
+
     async function onSubmit(e) {
         e.preventDefault();
 
@@ -20,12 +21,7 @@ export default function SpotsForm() {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
-    useEffect(() => {
-        setSpots(selectorSpots)
-    }, [selectorSpots])
-    if (spots) {
-        console.log(spots[1][address])
-    }
+
     return (
         <div>
             <form onSubmit={onSubmit}>
@@ -38,7 +34,15 @@ export default function SpotsForm() {
                 <img src={imageUrl} alt="" />
                 <button>Submit New Mansion</button>
             </form>
-            <div>{spots.address}</div>
+            {selectorSpots?.map(({ id, name, User, address, city, state,price,imageUrl }) => {return (
+                <div key={id}>
+                    <div>Name:{name}</div>
+                    <div>Created by:{User.username}</div>
+                    <div>Address:{address} {city},{state}</div>
+                    <div>Price: ${price}</div>
+                    <img src={imageUrl} alt=""/>
+                </div>
+            )})}
         </div>
     )
 }
