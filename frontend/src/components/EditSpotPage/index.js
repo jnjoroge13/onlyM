@@ -21,13 +21,13 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     async function onSubmit(e) {
         e.preventDefault();
         await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id }))
-        history.push(`/spots/${id}`)
+        history.push(`/spots`)
     }
 
     async function onDelete(e) {
         e.preventDefault();
         await dispatch(thunkDeleteSpot(spotId))
-        history.push(`/api/spots`)
+        history.push(`/spots`)
     }
     useEffect(() => {
         dispatch(thunkGetOneSpot(spotId))

@@ -25,7 +25,7 @@ router.post(
 
 router.get('/:id', asyncHandler(async function (req, res) {
     console.log('BACKEND GET ONE Spot - id -> ', req.params.id)
-    const spot = await Spot.findByPk(req.body.id);
+    const spot = await Spot.findByPk(req.params.id);
     res.json(spot)
 }));
 
