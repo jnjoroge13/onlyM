@@ -26,8 +26,8 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
 
     async function onDelete(e) {
         e.preventDefault();
-        await dispatch(thunkDeleteSpot(spotId))
         history.push(`/spots`)
+        await dispatch(thunkDeleteSpot(spotId))
     }
     useEffect(() => {
         dispatch(thunkGetOneSpot(spotId))
