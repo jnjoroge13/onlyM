@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import spots, { thunkEditSpot, thunkGetOneSpot, thunkDeleteSpot } from '../../store/spots';
+import spots, { thunkEditSpot, thunkGetOneSpot, thunkDeleteSpot, thunkGetAllSpots } from '../../store/spots';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
 
@@ -10,17 +10,17 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory()
-    // console.log(editSpot)
-    const id = editSpot.id
-    const [address, setAddress] = useState(editSpot.address)
-    const [city, setCity] = useState(editSpot.city)
-    const [state, setState] = useState(editSpot.state)
-    const [name, setName] = useState(editSpot.name)
-    const [price, setPrice] = useState(editSpot.price)
-    const [imageUrl, setImageUrl] = useState(editSpot.imageUrl)
+    console.log(editSpot)
+
+    const [address, setAddress] = useState(editSpot?.address)
+    const [city, setCity] = useState(editSpot?.city)
+    const [state, setState] = useState(editSpot?.state)
+    const [name, setName] = useState(editSpot?.name)
+    const [price, setPrice] = useState(editSpot?.price)
+    const [imageUrl, setImageUrl] = useState(editSpot?.imageUrl)
     async function onSubmit(e) {
         e.preventDefault();
-        await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id }))
+        await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id:spotId }))
         history.push(`/spots`)
     }
 
@@ -32,6 +32,10 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     useEffect(() => {
         dispatch(thunkGetOneSpot(spotId))
     }, [dispatch, spotId])
+    useEffect(() => {
+        dispatch(thunkGetAllSpots(spotId))
+    }, [dispatch, spotId])
+
 
     return (
         <div>
@@ -47,6 +51,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <button onClick={onDelete}>Delete</button>
                 <button type='button'><Link to='/spots'>Cancel</Link></button>
             </form>
+            <div>{ editSpot?.name}</div>
         </div>
     )
 };
