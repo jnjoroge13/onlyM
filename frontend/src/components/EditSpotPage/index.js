@@ -5,7 +5,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 
 
 const EditSpotPage = ({ pokemon, hideForm }) => {
-    const {spotId} = useParams();
+    const { spotId } = useParams();
     const editSpot = useSelector(state => state.spots[spotId]);
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
@@ -29,9 +29,9 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
         await dispatch(thunkDeleteSpot(spotId))
         history.push(`/api/spots`)
     }
-    // useEffect(() => {
-    //     dispatch(thunkGetOneSpot(spotId))
-    // }, [dispatch, spotId])
+    useEffect(() => {
+        dispatch(thunkGetOneSpot(spotId))
+    }, [dispatch, spotId])
 
     return (
         <div>
