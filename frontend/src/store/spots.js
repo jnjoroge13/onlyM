@@ -65,8 +65,8 @@ export const thunkGetOneSpot = (spotId) => async (dispatch) => {
     // console.log(response)
     if (response.ok) {
         const spot = await response.json();
-        console.clear()
-      console.log(spot)
+        // console.clear()
+    //   console.log(spot)
         dispatch(actionGetOneSpot(spot));
         return spot
     }
@@ -96,7 +96,8 @@ export const thunkDeleteSpot = (spotId) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionDeleteSpot(data))
+        // console.log(spotId)
+        dispatch(actionDeleteSpot(spotId))
         return response;
     }
   };
@@ -114,7 +115,7 @@ const spots = (state = {}, action) => {
             return newState;
 
         case GET_SPOTS:
-            console.log(action)
+            // console.log(action)
             action.spots.forEach(spot => {
                 newState[spot.id] = spot
             });
@@ -125,7 +126,12 @@ const spots = (state = {}, action) => {
             return newState
 
         case DELETE_SPOT:
-            delete newState[action.spot.id]
+            // console.log(newState)
+            // console.log(action)
+            delete newState[action.spotId]
+            // console.log('\n\n\n\n**************************')
+
+            // console.log(newState)
             return newState
 
         default:

@@ -7,7 +7,7 @@ export default function SpotsForm() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(sessionUser.id)
+    // console.log(sessionUser.id)
     const history = useHistory()
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
