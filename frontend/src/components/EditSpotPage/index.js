@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import spots, { thunkEditSpot } from '../../store/spots';
+import spots, { thunkEditSpot, thunkGetOneSpot, thunkDeleteSpot } from '../../store/spots';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
 
@@ -24,6 +24,15 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
         history.push(`/spots/${id}`)
     }
 
+    async function onDelete(e) {
+        e.preventDefault();
+        await dispatch(thunkDeleteSpot(spotId))
+        history.push(`/api/spots`)
+    }
+    // useEffect(() => {
+    //     dispatch(thunkGetOneSpot(spotId))
+    // }, [dispatch, spotId])
+
     return (
         <div>
             <form onSubmit={onSubmit}>
@@ -35,6 +44,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <label>image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
                 <img src={imageUrl} alt="" />
                 <button>Update Mansion</button>
+                <button onClick={onDelete}>Delete</button>
                 <button type='button'><Link to='/spots'>Cancel</Link></button>
             </form>
         </div>

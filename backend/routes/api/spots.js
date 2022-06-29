@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Spot, User} = require('../../db/models');
+const { Spot, User } = require('../../db/models');
 const router = express.Router();
 
 router.get(
@@ -9,7 +9,7 @@ router.get(
         console.log('spot get')
         const spots = await Spot.findAll({
             include: User,
-            order: [['id','DESC']]
+            order: [['id', 'DESC']]
         });
         return res.json(spots)
     })
@@ -23,7 +23,7 @@ router.post(
     })
 );
 
-router.get('/:id', asyncHandler(async function(req, res) {
+router.get('/:id', asyncHandler(async function (req, res) {
     console.log('BACKEND GET ONE Spot - id -> ', req.params.id)
     const spot = await Spot.findByPk(req.body.id);
     res.json(spot)
@@ -37,13 +37,21 @@ router.put(
         const spot = await Spot.update(
             req.body,
             {
-              where: { id },
-              returning: true,
-              plain: true,
+                where: { id },
+                returning: true,
+                plain: true,
             }
-          );
+        );
         res.json(spot)
         return res
     })
-  );
+);
+
+router.delete(
+    '/:id',
+    asyncHandler(async (req, res) => {
+        const spot = await Spot.findByPk(req.params.id)
+        await spot.destroy();
+        return res.json('Delete')
+    }))
 module.exports = router

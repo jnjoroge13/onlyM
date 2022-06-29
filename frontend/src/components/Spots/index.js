@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import spots, { thunkAddSpot, thunkGetAllSpots } from '../../store/spots';
 
 export default function SpotsForm() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
     const sessionUser = useSelector((state) => state.session.user);
+    const history = useHistory()
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')

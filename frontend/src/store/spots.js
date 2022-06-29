@@ -51,6 +51,15 @@ export const thunkAddSpot = (spot) => async (dispatch) => {
     return response;
 };
 
+export const thunkGetOneSpot = (id) => async (dispatch) => {
+    const response = await fetch(`/api/spots/${id}`);
+
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(actionEditSpot(spot));
+    }
+};
+
 export const thunkEditSpot = (spot) => async (dispatch) => {
     // console.log(spot)
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
@@ -67,19 +76,18 @@ export const thunkEditSpot = (spot) => async (dispatch) => {
         return data;
     }
 };
-// export const login = (user) => async (dispatch) => {
-//     const { credential, password } = user;
-//     const response = await csrfFetch('/api/session', {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         credential,
-//         password,
-//       }),
-//     });
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-// };
+
+export const thunkDeleteSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionDeleteSpot(data))
+        return response;
+    }
+  };
 
 
 const spots = (state = {}, action) => {
@@ -102,7 +110,7 @@ const spots = (state = {}, action) => {
             }
 
         case DELETE_SPOT:
-            delete newState[action.spotId]
+            delete newState[action.spot.id]
             return newState
 
         default:
