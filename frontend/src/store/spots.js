@@ -50,19 +50,23 @@ export const thunkAddSpot = (spot) => async (dispatch) => {
     dispatch(actionAddSpot(data));
     return response;
 };
-// export const login = (user) => async (dispatch) => {
-//     const { credential, password } = user;
-//     const response = await csrfFetch('/api/session', {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         credential,
-//         password,
-//       }),
-//     });
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-// };
+
+export const thunkEditSpot = (spot) => async (dispatch) => {
+    // console.log(spot)
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(spot),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionEditSpot(data));
+        return data;
+    }
+};
 // export const login = (user) => async (dispatch) => {
 //     const { credential, password } = user;
 //     const response = await csrfFetch('/api/session', {
@@ -83,7 +87,7 @@ const spots = (state = {}, action) => {
     switch (action.type) {
         case ADD_SPOT:
             return {
-                ...state, [action.spot.id]:action.spot
+                ...state, [action.spot.id]: action.spot
             }
 
         case GET_SPOTS:
@@ -93,9 +97,9 @@ const spots = (state = {}, action) => {
             return newState;
 
         case EDIT_SPOT:
-            newState = Object.assign({}, state);
-            newState.user = action.payload;
-            return newState;
+            return {
+                ...state, [action.spot.id]: action.spot
+            }
 
         case DELETE_SPOT:
             delete newState[action.spotId]

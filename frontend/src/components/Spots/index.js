@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom';
 import spots, { thunkAddSpot, thunkGetAllSpots } from '../../store/spots';
 
 export default function SpotsForm() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
     const sessionUser = useSelector((state) => state.session.user);
-    // console.log(selectorSpots[1])
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
@@ -17,7 +17,7 @@ export default function SpotsForm() {
     async function onSubmit(e) {
         e.preventDefault();
         // console.log('f')
-        dispatch(thunkAddSpot({userId:sessionUser.id,state, address, city, name,price, imageUrl}))
+        dispatch(thunkAddSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl }))
     }
     useEffect(() => {
         dispatch(thunkGetAllSpots())
@@ -36,15 +36,21 @@ export default function SpotsForm() {
                 <img src={imageUrl} alt="" />
                 <button>Submit New Mansion</button>
             </form>
-            {selectorSpots?.map(({ id, name, User, address, city, state,price,imageUrl }) => {return (
-                <div key={id}>
-                    <div>Name:{name}</div>
-                    <div>Created by:{User.username}</div>
-                    <div>Address:{address} {city},{state}</div>
-                    <div>Price: ${price}</div>
-                    <img src={imageUrl} alt=""/>
-                </div>
-            )})}
+            {selectorSpots?.map(({ id, name, User, address, city, state, price, imageUrl }) => {
+                 function editButton(e) {
+                    e.preventDefault();
+                    setName(name)
+                }
+                return (
+                    <NavLink key={id} to={`spots/${id}`}>
+                        <div>Name:{name}</div>
+                        <div>Created by:{User.username}</div>
+                        <div>Address:{address} {city},{state}</div>
+                        <div>Price: ${price}</div>
+                        <img src={imageUrl} alt="" />
+                    </NavLink>
+                )
+            })}
         </div>
     )
 }
