@@ -1,1 +1,2 @@
-https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350
+after adding anything to backend page will not render
+refresh on spot breaks
