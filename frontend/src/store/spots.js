@@ -40,6 +40,7 @@ export const thunkGetAllSpots = (spots) => async (dispatch) => {
     const response = await csrfFetch('/api/spots');
     if (response.ok) {
         const data = await response.json();
+        // console.log(data)
         dispatch(actionGetSpots(data));
         return response;
     } else {
@@ -60,9 +61,12 @@ export const thunkAddSpot = (spot) => async (dispatch) => {
 
 export const thunkGetOneSpot = (spotId) => async (dispatch) => {
     const response = await fetch(`/api/spots/${spotId}`);
-
+    // console.log('\n\n\n\n**************************')
+    // console.log(response)
     if (response.ok) {
-      const spot = await response.json();
+        const spot = await response.json();
+        console.clear()
+      console.log(spot)
         dispatch(actionGetOneSpot(spot));
         return spot
     }
@@ -110,6 +114,7 @@ const spots = (state = {}, action) => {
             return newState;
 
         case GET_SPOTS:
+            console.log(action)
             action.spots.forEach(spot => {
                 newState[spot.id] = spot
             });

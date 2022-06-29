@@ -7,6 +7,7 @@ export default function SpotsForm() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
     const sessionUser = useSelector((state) => state.session.user);
+    console.log(sessionUser.id)
     const history = useHistory()
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -24,7 +25,9 @@ export default function SpotsForm() {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
-
+    if (!selectorSpots || !sessionUser) {
+        return null
+    }
     return (
         <div>
             <form onSubmit={onSubmit}>
@@ -37,7 +40,7 @@ export default function SpotsForm() {
                 <img src={imageUrl} alt="" />
                 <button>Submit New Mansion</button>
             </form>
-            {selectorSpots?.map(({ id, name, User, address, city, state, price, imageUrl }) => {
+            {selectorSpots?.map(({ id, name, address, city, state, price, imageUrl }) => {
                  function editButton(e) {
                     e.preventDefault();
                     setName(name)
@@ -45,7 +48,7 @@ export default function SpotsForm() {
                 return (
                     <NavLink key={id} to={`spots/${id}`}>
                         <div>Name:{name}</div>
-                        <div>Created by:{User.username}</div>
+                        <div>Created by:{sessionUser.username}</div>
                         <div>Address:{address} {city},{state}</div>
                         <div>Price: ${price}</div>
                         <img src={imageUrl} alt="" />
