@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Spot.associate = function (models) {
+    Spot.hasMany(models.Review, {foreignKey: 'spotId'})
     Spot.belongsTo(models.User, {foreignKey: 'userId'})
   };
   return Spot;

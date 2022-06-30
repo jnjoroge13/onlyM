@@ -1,2 +1,1 @@
-after adding anything to backend page will not render
-refresh on spot breaks
+npx sequelize model:generate --name Review --attributes userId:integer,spotId:integer,review:string,rating:integer
