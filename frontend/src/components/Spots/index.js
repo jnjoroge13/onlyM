@@ -26,7 +26,7 @@ export default function Spots() {
                 return (
                     <NavLink key={spot.id} to={`spots/${spot.id}`}>
                         <div>Name:{spot.name}</div>
-                        {/* <div>Created by:{spot.User.username}</div> */}
+                        <div>Created by:{spot.User?.username}</div>
                         <div>Address:{spot.address} {spot.city},{spot.state}</div>
                         <div>Price: ${spot.price}</div>
                         <img src={spot.imageUrl} alt="" />

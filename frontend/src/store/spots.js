@@ -61,8 +61,8 @@ export const thunkAddSpot = (spot) => async (dispatch) => {
 
 export const thunkGetOneSpot = (spotId) => async (dispatch) => {
     const response = await fetch(`/api/spots/${spotId}`);
-    console.log('\n\n\n\n**************************')
-    console.log(response)
+    // console.log('\n\n\n\n**************************')
+    // console.log(response)
     if (response.ok) {
         const spot = await response.json();
         // console.clear()
@@ -84,8 +84,8 @@ export const thunkEditSpot = (spot) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data)
-        console.log([data[1]])
+        // console.log(data)
+        // console.log([data[1]])
         dispatch(actionEditSpot([data[1]]));
         return data;
     }
