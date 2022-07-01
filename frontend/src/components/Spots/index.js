@@ -16,10 +16,20 @@ export default function SpotsForm() {
     const [price, setPrice] = useState('')
     const [imageUrl, setImageUrl] = useState('')
 
+    function clearSpotForm() {
+        setAddress('')
+        setCity('')
+        setState('')
+        setName('')
+        setPrice('')
+        setPrice('')
+        setImageUrl('')
+    }
     async function onSubmit(e) {
         e.preventDefault();
         // console.log('f')
         dispatch(thunkAddSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl }))
+        return clearSpotForm()
     }
     useEffect(() => {
         dispatch(thunkGetAllSpots())
