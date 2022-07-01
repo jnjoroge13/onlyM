@@ -12,7 +12,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory()
-    console.log(editSpot)
+    // console.log(editSpot)
 
     const [address, setAddress] = useState(editSpot?.address)
     const [city, setCity] = useState(editSpot?.city)
