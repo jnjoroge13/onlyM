@@ -6,6 +6,7 @@ export default function ReviewForm() {
     const dispatch = useDispatch()
     const { spotId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
+    // console.log(sessionUser.username)
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('1')
 
@@ -14,13 +15,13 @@ export default function ReviewForm() {
     // }, [dispatch])
 
     function clearSpotForm() {
-        setRating('')
+        setRating('1')
         setReview('')
     }
     async function onSubmit(e) {
         e.preventDefault();
         // console.log('f')
-        dispatch(thunkAddReview({ userId: sessionUser.id, review, rating, spotId: spotId }))
+        dispatch(thunkAddReview({ userId: sessionUser.id, review, rating, spotId: spotId, username:sessionUser.username}))
         return clearSpotForm()
     }
     return (

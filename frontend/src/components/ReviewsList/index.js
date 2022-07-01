@@ -21,12 +21,12 @@ export default function ReviewList() {
     return (
         <div>
             {spotReviews?.map((review) => {
-                console.log(review)
+                // console.log(review)
                 return (
                     <div>
                         <div>Review:<br/>{review.review}</div>
                         <div>Rating:{review.rating} ⭐</div>
-                        {/* <div>Created by:{review.User.username}</div> */}
+                        <div>Created by:{review.User.username}</div>
                         {(sessionUser?.id == review.userId) && <button onClick={async(e) => {
                             e.preventDefault();
                             // history.push(`/spots`)

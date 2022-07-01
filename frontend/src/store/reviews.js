@@ -37,12 +37,14 @@ export const thunkGetAllReviews = (reviews) => async (dispatch) => {
 };
 
 export const thunkAddReview = (review) => async (dispatch) => {
+    // console.log(review)
     const response = await csrfFetch('/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(review)
     });
     const data = await response.json();
+    console.log(data)
     dispatch(actionAddReview(data));
     return response;
 };
