@@ -51,10 +51,6 @@ export default function SpotsForm() {
                 <button>Submit New Mansion</button>
             </form>
             {selectorSpots?.map(({ id, name, address, city, state, price, imageUrl }) => {
-                 function editButton(e) {
-                    e.preventDefault();
-                    setName(name)
-                }
                 return (
                     <NavLink key={id} to={`spots/${id}`}>
                         <div>Name:{name}</div>
