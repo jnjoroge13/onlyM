@@ -7,7 +7,7 @@ export default function ReviewForm() {
     const { spotId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
     const [review, setReview] = useState('')
-    const [rating, setRating] = useState('')
+    const [rating, setRating] = useState('1')
 
     useEffect(() => {
         dispatch(thunkGetAllReviews())
@@ -27,7 +27,15 @@ export default function ReviewForm() {
         <div>
             <form onSubmit={onSubmit}>
                 <label>Review:<textarea value={review} onChange={e => setReview(e.target.value)} /></label>
-                <label>Rating:<input type='text' value={rating} onChange={e => setRating(e.target.value)} /></label>
+                <label>Rating:
+                    <select value={rating} onChange={e => setRating(e.target.value)}>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                    </select>
+                </label>
                 <button>Submit New Review</button>
             </form>
         </div>
