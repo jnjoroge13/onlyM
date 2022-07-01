@@ -86,7 +86,7 @@ export const thunkEditSpot = (spot) => async (dispatch) => {
         const data = await response.json();
         // console.log(data)
         // console.log([data[1]])
-        dispatch(actionEditSpot([data[1]]));
+        dispatch(actionEditSpot(data));
         return data;
     }
 };
