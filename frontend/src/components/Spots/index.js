@@ -1,63 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory } from 'react-router-dom';
-import spots, { thunkAddSpot, thunkGetAllSpots } from '../../store/spots';
+import { NavLink } from 'react-router-dom';
+import { thunkGetAllSpots } from '../../store/spots';
+import NewSpotsForm from '../NewSpotForm';
 
-export default function SpotsForm() {
+export default function Spots() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
     const sessionUser = useSelector((state) => state.session.user);
-    // console.log(sessionUser.id)
-    const history = useHistory()
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
-
-    function clearSpotForm() {
-        setAddress('')
-        setCity('')
-        setState('')
-        setName('')
-        setPrice('')
-        setPrice('')
-        setImageUrl('')
-    }
-    async function onSubmit(e) {
-        e.preventDefault();
-        // console.log('f')
-        dispatch(thunkAddSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl }))
-        return clearSpotForm()
-    }
+    // console.log(sessionUser)
+    const [showForm, setShowForm] = useState(false)
     useEffect(() => {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
-    if (!selectorSpots || !sessionUser) {
-        return null
-    }
+    // if (!selectorSpots || !sessionUser) {
+    //     return null
+    // }
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <label>address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
-                <label>city:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
-                <label>state:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
-                <label>name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
-                <label>price:<input type='text' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
-                <label>image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
-                <img src={imageUrl} alt="" />
-                <button>Submit New Mansion</button>
-            </form>
-            {selectorSpots?.map(({ id, name, address, city, state, price, imageUrl }) => {
+            {sessionUser && <button onClick={e=>{setShowForm(!showForm)}}>Create New Listing</button>}
+            {showForm && <NewSpotsForm showForm/>}
+            {selectorSpots?.map((spot) => {
+                // console.log(spot)
                 return (
-                    <NavLink key={id} to={`spots/${id}`}>
-                        <div>Name:{name}</div>
-                        <div>Created by:{sessionUser.username}</div>
-                        <div>Address:{address} {city},{state}</div>
-                        <div>Price: ${price}</div>
-                        <img src={imageUrl} alt="" />
+                    <NavLink key={spot.id} to={`spots/${spot.id}`}>
+                        <div>Name:{spot.name}</div>
+                        <div>Created by:{spot.User.username}</div>
+                        <div>Address:{spot.address} {spot.city},{spot.state}</div>
+                        <div>Price: ${spot.price}</div>
+                        <img src={spot.imageUrl} alt="" />
                     </NavLink>
                 )
             })}

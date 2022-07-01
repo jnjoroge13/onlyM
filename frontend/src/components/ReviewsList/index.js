@@ -9,7 +9,7 @@ export default function ReviewList() {
     const spotReviews = selectorReviews.filter(review => {
         return(review.spotId == spotId)
     })
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
     async function onDelete(e) {
         e.preventDefault();
         // history.push(`/spots`)
@@ -18,11 +18,12 @@ export default function ReviewList() {
     return (
         <div>
             {spotReviews?.map((review) => {
+                // console.log(review)
                 return (
                     <div>
                         <div>Review:<br/>{review.review}</div>
                         <div>Rating:{review.rating} ⭐</div>
-                        <div>Created by:{sessionUser.username}</div>
+                        <div>Created by:{review.User.username}</div>
                         <button onClick={async(e) => {
                             e.preventDefault();
                             // history.push(`/spots`)
