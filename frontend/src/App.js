@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import EditSpotPage from "./components/EditSpotPage";
 import { thunkGetAllSpots } from './store/spots';
 import { thunkGetAllReviews } from './store/reviews';
+import NotFound from "./components/NotFound/NotFound";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/spots/:spotId">
             <EditSpotPage />
           </Route>
+          <Route component={NotFound}/>
         </Switch>
       )}
     </>
