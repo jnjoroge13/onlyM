@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import spots, { thunkEditSpot, thunkGetOneSpot, thunkDeleteSpot, thunkGetAllSpots } from '../../store/spots';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import ReviewForm from '../ReviewForm';
+import ReviewList from '../ReviewsList';
 
 
 const EditSpotPage = ({ pokemon, hideForm }) => {
@@ -51,7 +53,9 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <button onClick={onDelete}>Delete</button>
                 <button type='button'><Link to='/spots'>Cancel</Link></button>
             </form>
-            <div>{ editSpot?.name}</div>
+            <div>{editSpot?.name}</div>
+            <ReviewForm/>
+            <ReviewList/>
         </div>
     )
 };
