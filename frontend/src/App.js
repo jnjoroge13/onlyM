@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
-import SpotsForm from "./components/Spots";
+import Spots from "./components/Spots";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import EditSpotPage from "./components/EditSpotPage";
@@ -35,7 +35,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/spots">
-            <SpotsForm />
+            <Spots />
           </Route>
           <Route path="/spots/:spotId">
             <EditSpotPage />
