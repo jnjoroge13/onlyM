@@ -68,7 +68,10 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <button type='button'><Link to='/spots'>Cancel</Link></button>
             </form>}
             <div>{editSpot?.name}</div>
-            {(sessionUser && !isOwner) && <ReviewForm/>}
+            <div>{editSpot?.address} {editSpot?.city},{editSpot?.state}</div>
+            <div>${editSpot?.price}/night</div>
+            <img src={imageUrl} alt="" />
+            {(sessionUser && !isOwner) && <ReviewForm />}
             <ReviewList/>
         </div>
     )
