@@ -14,6 +14,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const history = useHistory()
     // console.log(editSpot)
 
+    const [isOwner, setIsOwner] = useState(sessionUser?.id == editSpot?.userId)
     const [address, setAddress] = useState(editSpot?.address)
     const [city, setCity] = useState(editSpot?.city)
     const [state, setState] = useState(editSpot?.state)
@@ -28,13 +29,14 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     }
 
     useEffect(() => {
+        setIsOwner(sessionUser?.id == editSpot?.userId)
         setAddress(editSpot?.address)
         setCity(editSpot?.city)
         setState(editSpot?.state)
         setName(editSpot?.name)
         setPrice(editSpot?.price)
         setImageUrl(editSpot?.imageUrl)
-    }, [editSpot])
+    }, [editSpot, sessionUser])
 
     async function onDelete(e) {
         e.preventDefault();
@@ -53,7 +55,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
 
     return (
         <div>
-            <form onSubmit={onSubmit}>
+            {isOwner && <form onSubmit={onSubmit}>
                 <label>address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
                 <label>city:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
                 <label>state:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
@@ -64,9 +66,9 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <button>Update Mansion</button>
                 <button onClick={onDelete}>Delete</button>
                 <button type='button'><Link to='/spots'>Cancel</Link></button>
-            </form>
+            </form>}
             <div>{editSpot?.name}</div>
-            <ReviewForm/>
+            {sessionUser && <ReviewForm/>}
             <ReviewList/>
         </div>
     )

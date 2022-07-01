@@ -7,8 +7,8 @@ import NewSpotsForm from '../NewSpotForm';
 export default function Spots() {
     const dispatch = useDispatch()
     const selectorSpots = useSelector(state => Object.values(state.spots))
-    // const sessionUser = useSelector((state) => state.session.user);
-    // console.log(sessionUser.id)
+    const sessionUser = useSelector((state) => state.session.user);
+    // console.log(sessionUser)
     const [showForm, setShowForm] = useState(false)
     useEffect(() => {
         dispatch(thunkGetAllSpots())
@@ -19,7 +19,7 @@ export default function Spots() {
     // }
     return (
         <div>
-            <button onClick={e=>{setShowForm(!showForm)}}>Create New Listing</button>
+            {sessionUser && <button onClick={e=>{setShowForm(!showForm)}}>Create New Listing</button>}
             {showForm && <NewSpotsForm showForm/>}
             {selectorSpots?.map((spot) => {
                 // console.log(spot)
