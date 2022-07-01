@@ -20,23 +20,35 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const [name, setName] = useState(editSpot?.name)
     const [price, setPrice] = useState(editSpot?.price)
     const [imageUrl, setImageUrl] = useState(editSpot?.imageUrl)
+
     async function onSubmit(e) {
         e.preventDefault();
         await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id:spotId }))
         history.push(`/spots`)
     }
 
+    useEffect(() => {
+        setAddress(editSpot?.address)
+        setCity(editSpot?.city)
+        setState(editSpot?.state)
+        setName(editSpot?.name)
+        setPrice(editSpot?.price)
+        setImageUrl(editSpot?.imageUrl)
+    }, [editSpot])
+
     async function onDelete(e) {
         e.preventDefault();
         history.push(`/spots`)
         await dispatch(thunkDeleteSpot(spotId))
     }
+
     useEffect(() => {
         dispatch(thunkGetOneSpot(spotId))
     }, [dispatch, spotId])
+
     useEffect(() => {
-        dispatch(thunkGetAllSpots(spotId))
-    }, [dispatch, spotId])
+        dispatch(thunkGetAllSpots())
+    }, [dispatch])
 
 
     return (

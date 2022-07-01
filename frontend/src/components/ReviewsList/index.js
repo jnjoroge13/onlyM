@@ -20,7 +20,7 @@ export default function ReviewList() {
             {spotReviews?.map((review) => {
                 return (
                     <div>
-                        <div>Review:{review.review}</div>
+                        <div>Review:<br/>{review.review}</div>
                         <div>Rating:{review.rating} ⭐</div>
                         <div>Created by:{sessionUser.username}</div>
                         <button onClick={async(e) => {
