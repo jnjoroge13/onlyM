@@ -6,14 +6,26 @@ import SpotsForm from "./components/Spots";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import EditSpotPage from "./components/EditSpotPage";
+import { thunkGetAllSpots } from './store/spots';
+import { thunkGetAllReviews } from './store/reviews';
+
+
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(thunkGetAllSpots())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(thunkGetAllReviews())
+}, [dispatch])
   return (
     <>
       <Navigation isLoaded={isLoaded} />

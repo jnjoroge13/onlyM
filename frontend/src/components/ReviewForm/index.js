@@ -9,9 +9,9 @@ export default function ReviewForm() {
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('1')
 
-    useEffect(() => {
-        dispatch(thunkGetAllReviews())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(thunkGetAllReviews())
+    // }, [dispatch])
 
     function clearSpotForm() {
         setRating('')
