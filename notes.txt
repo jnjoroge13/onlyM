@@ -1,1 +1,4 @@
-npx sequelize model:generate --name Review --attributes userId:integer,spotId:integer,review:string,rating:integer
+ReviewList 34
+created errror
+edit creates empty listing
+how to check is route exists specific spot

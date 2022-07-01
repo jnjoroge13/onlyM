@@ -62,13 +62,13 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <label>name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
                 <label>price:<input type='text' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
                 <label>image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
-                <img src={imageUrl} alt="" />
+                {/* <img src={imageUrl} alt="" /> */}
                 <button>Update Mansion</button>
                 <button onClick={onDelete}>Delete</button>
                 <button type='button'><Link to='/spots'>Cancel</Link></button>
             </form>}
             <div>{editSpot?.name}</div>
-            {sessionUser && <ReviewForm/>}
+            {(sessionUser && !isOwner) && <ReviewForm/>}
             <ReviewList/>
         </div>
     )
