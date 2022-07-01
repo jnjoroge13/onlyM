@@ -44,7 +44,7 @@ export const thunkAddReview = (review) => async (dispatch) => {
         body: JSON.stringify(review)
     });
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     dispatch(actionAddReview(data));
     return response;
 };

@@ -6,7 +6,7 @@ const router = express.Router();
 router.get(
     '/',
     asyncHandler(async (req, res) => {
-        console.log('spot get')
+        // console.log('spot get')
         const spots = await Spot.findAll({
             include: 'User',
         });
@@ -17,13 +17,16 @@ router.post(
     '/',
     asyncHandler(async (req, res) => {
         const spot = await Spot.create(req.body);
-        res.json(spot)
+        const findSpot = await Spot.findByPk(spot.dataValues.id, {
+            include:[User]
+        })
+        res.json(findSpot)
         return res
     })
 );
 
 router.get('/:id', asyncHandler(async function (req, res) {
-    console.log('BACKEND GET ONE Spot - id -> ', req.params.id)
+    // console.log('BACKEND GET ONE Spot - id -> ', req.params.id)
     const spot = await Spot.findByPk(req.params.id);
     res.json(spot)
 }));
