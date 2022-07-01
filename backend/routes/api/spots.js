@@ -34,18 +34,20 @@ router.get('/:id', asyncHandler(async function (req, res) {
 router.put(
     '/:id',
     asyncHandler(async function (req, res) {
-        const id = req.body.id
-        delete req.body.id
-        const spot = await Spot.update(
-            req.body,
-            {
-                where: { id },
-                returning: true,
-                plain: true,
-            }
-        );
-        res.json(spot)
-        return res
+        const { id } = req.body
+        // // console.log(/n/n/n,'********',id)
+        // // delete req.body.id
+        // const spot = await Spot.update(
+        //     {id},
+        //     {
+        //         where: { id },
+        //     }
+        // );
+        // console.log('********',spot)
+        // return res.json(spot)
+        const spot = await Spot.findByPk(id);
+        const updateSpot = await spot.update(req.body)
+        return res.json(updateSpot)
     })
 );
 
