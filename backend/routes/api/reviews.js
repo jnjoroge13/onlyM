@@ -16,8 +16,12 @@ router.get(
 router.post(
     '/',
     asyncHandler(async (req, res) => {
-        const review = await Review.create(req.body)
-        return res.json(review)
+        const addReview = await Review.create(req.body)
+        // console.log('/n/n/n*********',addReview.dataValues.id)
+        const findReview = await Review.findByPk(addReview.dataValues.id, {
+            include:[User]
+        })
+        return res.json(findReview)
     })
 )
 
