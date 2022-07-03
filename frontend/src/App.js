@@ -10,8 +10,6 @@ import { thunkGetAllSpots } from './store/spots';
 import { thunkGetAllReviews } from './store/reviews';
 import NotFound from "./components/NotFound/NotFound";
 
-
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,7 +33,7 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/spots">
+          <Route exact path="/">
             <Spots />
           </Route>
           <Route exact path="/spots/:spotId">
