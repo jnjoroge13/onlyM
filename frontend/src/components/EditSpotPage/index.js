@@ -52,7 +52,9 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
-
+    if (!editSpot) {
+        return <h1>Listing Not Found</h1>
+    }
     return (
         <div>
             {isOwner && <form onSubmit={onSubmit}>

@@ -32,16 +32,15 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/spots">
             <Spots />
           </Route>
-          <Route path="/spots/:spotId">
+          <Route exact path="/spots/:spotId">
             <EditSpotPage />
           </Route>
-          <Route component={NotFound}/>
         </Switch>
       )}
     </>
