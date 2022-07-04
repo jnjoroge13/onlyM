@@ -5,13 +5,14 @@
     grid-column-gap: 20px;
     padding: 20px;
     max-height: 870px;
+    width: 1720px;
     overflow: hidden;
     overflow-y: scroll;
 }
 
 .spot {
     border: 2px solid;
-    /* width: 600px; */
+    width: 510px;
     text-decoration: none;
     font-size: 20px;
     padding: 10px;
@@ -28,7 +29,7 @@
     background-color: lightgray;
 }
 .spot img {
-    width:550px;
+    width:500px;
     border-radius: 5px;
 }
 
