@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
         </NavLink>
       </div>
       <div id='title'>
-        OnlyMansions
+        onlyMansions
       </div>
       <div>
         {isLoaded && sessionLinks}

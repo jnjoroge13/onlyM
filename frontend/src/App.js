@@ -41,6 +41,9 @@ function App() {
           <Route exact path="/spots/:spotId">
             <EditSpotPage />
           </Route>
+          <Route>
+            <SplashPage/>
+          </Route>
         </Switch>
       )}
     </>
