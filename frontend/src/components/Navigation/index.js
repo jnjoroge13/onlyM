@@ -6,7 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import { login } from '../../store/session';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -18,24 +18,30 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <>
+      <div className='nav-right'>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-        <button onClick={e => {
-          return dispatch(login({credential:'demo@user.io', password:'password'}))
+        <NavLink className='signup-btn' to="/signup">Sign Up</NavLink>
+        <button className='demo-btn' onClick={e => {
+          return dispatch(login({ credential: 'demo@user.io', password: 'password' }))
         }}>Demo User</button>
-      </>
+      </div>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {/* <NavLink exact to="/spots">Spots</NavLink> */}
+    <div id='nav-container'>
+      <div id='home'>
+        <NavLink exact to="/" id='home-button' >
+          Home
+        </NavLink>
+      </div>
+      <div id='title'>
+        OnlyMansions
+      </div>
+      <div>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,80 @@
+#nav-container {
+    /* border: 2px solid ; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content:space-around;
+    height: 70px;
+    background-color: rgb(4, 171, 227);
+    width: 100%;
+}
+
+#home{
+    display: flex;
+    align-items: center;
+}
+#home-button,
+.signup-btn {
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    /* padding: 35px 30px; */
+    /* border: whitesmoke solid 2px; */
+    /* height: 100%; */
+    padding: 18px 30px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    /* text-align: center; */
+    /* vertical-align: middle; */
+}
+
+#home-button:hover,
+.login-btn:hover,
+.demo-btn:hover,
+.signup-btn:hover {
+    color: rgb(4, 171, 227);
+    background-color: whitesmoke;
+}
+#title {
+    display: flex;
+    color: white;
+    font-size: 40px;
+    align-items: center;
+}
+
+#user-button {
+    padding: 25.5px 30px;
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    position: relative;
+}
+
+.profile-dropdown li {
+    list-style-type: none;
+    color: blue;
+}
+
+.fa-user-circle {
+
+    color: white;
+}
+
+.nav-right {
+    /* border: 2px solid; */
+    display: flex;
+    align-items: center;
+}
+
+.login-btn,
+.demo-btn {
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    /* padding: 35px 30px; */
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    padding: 17.7px 30px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    cursor: pointer;
+}
