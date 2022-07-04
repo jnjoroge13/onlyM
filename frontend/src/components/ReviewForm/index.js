@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { thunkAddReview, thunkGetAllReviews } from '../../store/reviews';
+import './ReviewForm.css'
 export default function ReviewForm() {
     const dispatch = useDispatch()
     const { spotId } = useParams();
@@ -26,7 +27,7 @@ export default function ReviewForm() {
     }
     return (
         <div>
-            <form onSubmit={onSubmit}>
+            <form className='review-form-cont' onSubmit={onSubmit}>
                 <label>Review:<textarea value={review} onChange={e => setReview(e.target.value)} /></label>
                 <label>Rating:
                     <select value={rating} onChange={e => setRating(e.target.value)}>
