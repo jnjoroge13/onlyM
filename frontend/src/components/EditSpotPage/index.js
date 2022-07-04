@@ -4,6 +4,7 @@ import spots, { thunkEditSpot, thunkGetOneSpot, thunkDeleteSpot, thunkGetAllSpot
 import { Link, useHistory, useParams } from 'react-router-dom';
 import ReviewForm from '../ReviewForm';
 import ReviewList from '../ReviewsList';
+import './EditSpotPage.css'
 
 
 const EditSpotPage = ({ pokemon, hideForm }) => {
@@ -21,10 +22,11 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const [name, setName] = useState(editSpot?.name)
     const [price, setPrice] = useState(editSpot?.price)
     const [imageUrl, setImageUrl] = useState(editSpot?.imageUrl)
+    const [edit,setEdit] = useState(false)
 
     async function onSubmit(e) {
         e.preventDefault();
-        await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id:spotId }))
+        await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id: spotId }))
         history.push(`/spots`)
     }
 
@@ -57,24 +59,28 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     }
     return (
         <div>
-            {isOwner && <form onSubmit={onSubmit}>
-                <label>address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
-                <label>city:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
-                <label>state:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
-                <label>name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
-                <label>price:<input type='text' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
-                <label>image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
+            {(isOwner && edit) && <form className='edit-spot-form' onSubmit={onSubmit}>
+                <label>Address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
+                <label>City:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
+                <label>State:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
+                <label>Name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
+                <label>Price:<input type='text' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
+                <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
                 {/* <img src={imageUrl} alt="" /> */}
-                <button>Update Mansion</button>
-                <button onClick={onDelete}>Delete</button>
-                <button type='button'><Link to='/spots'>Cancel</Link></button>
+                <button>Update Listing</button>
+                <button type='button' onClick={e=> setEdit(false)}>Cancel</button>
             </form>}
-            <div>{editSpot?.name}</div>
-            <div>{editSpot?.address} {editSpot?.city},{editSpot?.state}</div>
-            <div>${editSpot?.price}/night</div>
-            <img src={imageUrl} alt="" />
+            <div>
+                <div>{editSpot?.name}</div>
+                <div>{editSpot?.address} {editSpot?.city},{editSpot?.state}</div>
+                <div>${editSpot?.price}/night</div>
+                <img src={imageUrl} alt="" />
+                {isOwner && <button onClick={e=> setEdit(true)}>Edit</button>}
+                {isOwner && <button onClick={onDelete}>Delete</button>
+}
+            </div>
             {(sessionUser && !isOwner) && <ReviewForm />}
-            <ReviewList/>
+            <ReviewList />
         </div>
     )
 };

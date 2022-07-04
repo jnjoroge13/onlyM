@@ -1,0 +1,36 @@
+.edit-spot-form {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.edit-spot-form label {
+    font-size: 20px;
+}
+.edit-spot-form img {
+    width: 200px;
+    border-radius: 5px;
+}
+.edit-spot-form button {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 19px;
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    font-family:'Times New Roman', Times, serif;
+    padding: 5px;
+    border-radius: 7px;
+    margin-left: 5px;
+}
+.edit-spot-form button:hover {
+    color: black;
+}
+.edit-spot-form label input {
+    width: 200px;
+    font-size: 18px;
+}
