@@ -35,7 +35,7 @@ module.exports = {
       price: 5000,
       imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2350&q=80'
     }, {
-      userId: 2,
+      userId: 1,
       address: '8223 Glen Creek Lane',
       city: 'Wellington',
       state: 'FL',
@@ -55,9 +55,17 @@ module.exports = {
       address: '760 Mill St',
       city: 'Schererville',
       state: 'IN',
-      name: 'Mediterranean Style Villa',
+      name: 'McMansion Manor',
       price: 3500,
-      imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2350&q=80'
+      imageUrl: 'https://99percentinvisible.org/app/uploads/2016/10/mcmansionville.jpg'
+    }, {
+      userId: 1,
+      address: '8031 North Golf Ave',
+      city: 'Aberdeen',
+      state: 'SD',
+      name: 'Cali-style Getaway',
+      price: 3500,
+      imageUrl: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80'
     }, {
       userId: 2,
       address: '6 Military Street',

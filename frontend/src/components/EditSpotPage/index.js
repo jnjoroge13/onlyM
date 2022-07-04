@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import spots, { thunkEditSpot, thunkGetOneSpot, thunkDeleteSpot, thunkGetAllSpots } from '../../store/spots';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 import ReviewForm from '../ReviewForm';
 import ReviewList from '../ReviewsList';
 import './EditSpotPage.css'
@@ -112,6 +112,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
             </div>
             {(sessionUser && !isOwner) && <ReviewForm />}
             <ReviewList />
+            <NavLink className='return-listing' to='/spots'>Return to Listings</NavLink>
         </div>
     )
 };
