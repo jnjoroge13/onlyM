@@ -13,7 +13,8 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory()
-    // console.log(editSpot)
+    const [validationErrors, setValidationErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
     const [isOwner, setIsOwner] = useState(sessionUser?.id == editSpot?.userId)
     const [address, setAddress] = useState(editSpot?.address)
@@ -24,11 +25,6 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const [imageUrl, setImageUrl] = useState(editSpot?.imageUrl)
     const [edit, setEdit] = useState(false)
 
-    async function onSubmit(e) {
-        e.preventDefault();
-        await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id: spotId }))
-        history.push(`/spots`)
-    }
 
     useEffect(() => {
         setIsOwner(sessionUser?.id == editSpot?.userId)
@@ -39,6 +35,17 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
         setPrice(editSpot?.price)
         setImageUrl(editSpot?.imageUrl)
     }, [editSpot, sessionUser])
+
+    useEffect(() => {
+        const errors = [];
+        if (!address?.length) errors.push('Please enter an Address')
+        if (!city?.length) errors.push('Please enter a City')
+        if (!state?.length) errors.push('Please enter a State')
+        if (!name?.length) errors.push('Please Name your listing')
+        if (price?.length == 0) errors.push('Please enter a Price')
+        if (!imageUrl?.length) errors.push('Please upload a picture link')
+        setValidationErrors(errors)
+    }, [address, city, state, name, price, imageUrl])
 
     async function onDelete(e) {
         e.preventDefault();
@@ -54,22 +61,45 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
+
+    async function onSubmit(e) {
+        e.preventDefault();
+        setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit')
+        setHasSubmitted(false)
+        await dispatch(thunkEditSpot({ userId: sessionUser.id, state, address, city, name, price, imageUrl, id: spotId }))
+        history.push(`/spots`)
+    }
+
     if (!editSpot) {
         return <h1>Listing Not Found</h1>
     }
     return (
         <div>
-            {(isOwner && edit) && <form className='edit-spot-form' onSubmit={onSubmit}>
-                <label>Address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
-                <label>City:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
-                <label>State:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
-                <label>Name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
-                <label>Price:<input type='text' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
-                <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
-                {/* <img src={imageUrl} alt="" /> */}
-                <button>Update Listing</button>
-                <button type='button' onClick={e => setEdit(false)}>Cancel</button>
-            </form>}
+            {(isOwner && edit) &&
+                <div>
+                    {hasSubmitted && validationErrors.length > 0 && (
+                <div className='new-listing-error'>
+                    Before you can submit:
+                    <ul>
+                        {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+                <form className='edit-spot-form' onSubmit={onSubmit}>
+                    <label>Address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
+                    <label>City:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
+                    <label>State:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
+                    <label>Name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
+                    <label>Price:<input type='number' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
+                    <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
+                    <button>Update Listing</button>
+                    <button type='button' onClick={e => setEdit(false)}>Cancel</button>
+                    </form>
+                    </div>
+            }
             <div className='listing-cont'>
                 <img src={imageUrl} alt="" />
                 <div>{editSpot?.name}</div>

@@ -25,8 +25,6 @@ export default function NewSpotsForm() {
         if(!name.length) errors.push('Please Name your listing')
         if(!price.length) errors.push('Please enter a Price')
         if(!imageUrl.length) errors.push('Please upload a picture link')
-        if(price.includes('e')) errors.push('Price must be a number')
-        if (price.includes('?')) errors.push('A dollor sign is not needed')
         setValidationErrors(errors)
     }, [address,city,state,name,price,imageUrl])
     function clearSpotForm() {
@@ -52,11 +50,11 @@ export default function NewSpotsForm() {
     return (
         <div>
             {hasSubmitted && validationErrors.length > 0 && (
-                <div>
+                <div className='new-listing-error'>
                     Before you can submit a new listing:
                     <ul>
                         {validationErrors.map(error => (
-                            <li>{error}</li>
+                            <li key={error}>{error}</li>
                         ))}
                     </ul>
                 </div>

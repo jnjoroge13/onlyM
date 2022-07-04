@@ -1,7 +1,7 @@
 .review-form-cont {
     max-width: 500px;
     margin: 1rem auto;
-    padding:4rem;
+    padding:1rem;
     border-radius: 20px;
     /* border: 2px solid; */
     display: flex;
@@ -43,4 +43,21 @@
 
 .review-form-cont button:hover {
     color: black;
+}
+
+.review-form-errors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    /* border: 2px solid; */
+}
+
+.review-form-errors li {
+    list-style: none;
+}
+
+.review {
+    /* border: 2px solid; */
 }

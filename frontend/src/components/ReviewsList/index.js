@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import reviews, { thunkDeleteReview, thunkGetAllReviews } from '../../store/reviews';
+import './ReviewsList.css'
 export default function ReviewList() {
     const dispatch = useDispatch()
     const { spotId } = useParams()
@@ -10,9 +11,11 @@ export default function ReviewList() {
     const editSpot = useSelector(state => state.spots[spotId]);
     const [isOwner, setIsOwner] = useState(sessionUser?.id == editSpot?.userId)
 
+
     const spotReviews = selectorReviews.filter(review => {
         return(review.spotId == spotId)
     })
+
 
     useEffect(() => {
         setIsOwner(sessionUser?.id == editSpot?.userId)
@@ -23,11 +26,11 @@ export default function ReviewList() {
             {spotReviews?.map((review) => {
                 // console.log(review)
                 return (
-                    <div>
-                        <div>Review:<br/>{review.review}</div>
+                    <div className='review'>
+                        {review.review && <div>Review:<br/>{review.review}</div>}
                         <div>Rating:{review.rating} ⭐</div>
                         <div>Created by:{review.User.username}</div>
-                        {(sessionUser?.id == review.userId) && <button onClick={async(e) => {
+                        {(sessionUser?.id == review.userId) && <button className='review-delete-btn' onClick={async(e) => {
                             e.preventDefault();
                             // history.push(`/spots`)
                             return await dispatch(thunkDeleteReview(review.id))
