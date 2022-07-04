@@ -8,8 +8,7 @@ import Navigation from "./components/Navigation";
 import EditSpotPage from "./components/EditSpotPage";
 import { thunkGetAllSpots } from './store/spots';
 import { thunkGetAllReviews } from './store/reviews';
-import NotFound from "./components/NotFound/NotFound";
-
+import SplashPage from "./components/SplashPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,10 +29,13 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <SplashPage />
+          </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/spots">
             <Spots />
           </Route>
           <Route exact path="/spots/:spotId">

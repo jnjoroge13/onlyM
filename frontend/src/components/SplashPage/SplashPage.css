@@ -1,0 +1,21 @@
+.listings-link {
+    display: flex;
+    /* flex-grow: 1; */
+    /* flex-flow: column; */
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#listing-btn {
+    text-decoration: none;
+    color: rgb(4, 171, 227);
+    font-size: 30px;
+    font-weight: bolder;
+}
+#listing-btn:hover {
+    color: white;
+    background-color: rgb(4, 171, 227) ;
+    padding: 30px;
+    border-radius: 20px;
+}
