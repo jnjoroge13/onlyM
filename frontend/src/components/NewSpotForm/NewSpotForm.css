@@ -12,6 +12,7 @@
 }
 .new-spot-form img {
     width: 200px;
+    border-radius: 5px;
 }
 .new-spot-form button {
     font-size: 20px;
@@ -24,6 +25,9 @@
     padding: 5px;
     border-radius: 7px;
     margin-left: 5px;
+}
+.new-spot-form button:hover {
+    color: black;
 }
 .new-spot-form label input {
     width: 200px;
