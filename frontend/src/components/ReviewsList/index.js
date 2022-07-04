@@ -29,8 +29,8 @@ export default function ReviewList() {
                     <div className='review-single'>
                         <div className='review-content'>
                             <div>Review:<br />{review.review}</div>
-                            <div>Rating:{review.rating} ⭐</div>
-                            <div>Created by:{review.User.username}</div>
+                            <div>Rating: {review.rating} ⭐</div>
+                            <div>Created by: {review.User.username}</div>
                             {(sessionUser?.id == review.userId) && <button className='review-delete-btn' onClick={async (e) => {
                                 e.preventDefault();
                                 // history.push(`/spots`)
