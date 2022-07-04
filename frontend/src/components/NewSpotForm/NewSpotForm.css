@@ -33,3 +33,15 @@
     width: 200px;
     font-size: 18px;
 }
+
+.new-listing-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.new-listing-error li {
+    list-style: none;
+}

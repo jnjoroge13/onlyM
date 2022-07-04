@@ -10,10 +10,14 @@ export default function ReviewForm() {
     // console.log(sessionUser.username)
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('1')
+    const [validationErrors, setValidationErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    // useEffect(() => {
-    //     dispatch(thunkGetAllReviews())
-    // }, [dispatch])
+    useEffect(() => {
+        const errors = []
+        if (!review.length) errors.push('Please write a review')
+        setValidationErrors(errors)
+    },[review])
 
     function clearSpotForm() {
         setRating('1')
@@ -21,12 +25,22 @@ export default function ReviewForm() {
     }
     async function onSubmit(e) {
         e.preventDefault();
-        // console.log('f')
+        // console.log(validationErrors)
+        setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit Review')
+        setHasSubmitted(false)
         dispatch(thunkAddReview({ userId: sessionUser.id, review, rating, spotId: spotId, username:sessionUser.username}))
         return clearSpotForm()
     }
     return (
-        <div>
+        <div className='review'>
+            {hasSubmitted && validationErrors.length > 0 && (
+                    <ul className='review-form-errors'>
+                        {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+            )}
             <form className='review-form-cont' onSubmit={onSubmit}>
                 <label>Review:<textarea value={review} onChange={e => setReview(e.target.value)} /></label>
                 <label>Rating:
