@@ -75,7 +75,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
         return <h1>Listing Not Found</h1>
     }
     return (
-        <div>
+        <div className='single-spot-cont'>
             {(isOwner && edit) &&
                 <div>
                     {hasSubmitted && validationErrors.length > 0 && (
