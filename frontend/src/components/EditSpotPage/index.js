@@ -77,28 +77,28 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     return (
         <div className='single-spot-cont'>
             {(isOwner && edit) &&
-                <div>
+                <div className='edit-spot-form-cont'>
                     {hasSubmitted && validationErrors.length > 0 && (
-                <div className='new-listing-error'>
-                    Before you can submit:
-                    <ul>
-                        {validationErrors.map(error => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-                <form className='edit-spot-form' onSubmit={onSubmit}>
-                    <label>Address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
-                    <label>City:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
-                    <label>State:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
-                    <label>Name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
-                    <label>Price:<input type='number' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
-                    <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
-                    <button>Update Listing</button>
-                    <button type='button' onClick={e => setEdit(false)}>Cancel</button>
+                        <div className='new-listing-error'>
+                            Before you can submit:
+                            <ul>
+                                {validationErrors.map(error => (
+                                    <li key={error}>{error}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    <form className='edit-spot-form' onSubmit={onSubmit}>
+                        <label>Address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
+                        <label>City:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
+                        <label>State:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
+                        <label>Name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
+                        <label>Price:<input type='number' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
+                        <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
+                        <button>Update Listing</button>
+                        <button type='button' onClick={e => setEdit(false)}>Cancel</button>
                     </form>
-                    </div>
+                </div>
             }
             <div className='listing-cont'>
                 <img src={imageUrl} alt="" />

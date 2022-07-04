@@ -9,14 +9,14 @@
 }
 
 .edit-spot-form label {
-    font-size: 20px;
+    font-size: 18px;
 }
 .edit-spot-form img {
     width: 200px;
     border-radius: 5px;
 }
 .edit-spot-form button {
-    font-size: 20px;
+    font-size: 19px;
     cursor: pointer;
     color: white;
     font-size: 19px;
@@ -25,7 +25,7 @@
     font-family:'Times New Roman', Times, serif;
     padding: 6px;
     border-radius: 7px;
-    /* margin-left: 5px; */
+    margin: 5px;
 }
 .edit-spot-form button:hover {
     color: black;
@@ -46,6 +46,8 @@
     margin-top: 20px;
     background-color: aliceblue;
     border-radius: 10px;
+    border: 2px solid rgb(223, 223, 242);
+
 }
 
 .listing-cont img {
@@ -69,9 +71,15 @@
     font-family:'Times New Roman', Times, serif;
     padding: 6px;
     border-radius: 7px;
+    margin: 5px;
     /* margin-left: 5px; */
 }
 
 .edit-listing-btn button:hover {
     color: black;
+}
+
+.edit-spot-form-cont {
+    display: flex;
+    justify-content: center;
 }
