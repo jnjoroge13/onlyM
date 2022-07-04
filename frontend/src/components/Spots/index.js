@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import { thunkGetAllSpots } from '../../store/spots';
 import NewSpotsForm from '../NewSpotForm';
+import './Spots.css'
 
 export default function Spots() {
     const dispatch = useDispatch()
@@ -20,20 +21,22 @@ export default function Spots() {
     // }
     return (
         <div>
-            {sessionUser && <button onClick={e=>{setShowForm(!showForm)}}>Create New Listing</button>}
-            {sessionUser && showForm && <NewSpotsForm showForm/>}
-            {selectorSpots?.map((spot) => {
-                // console.log(spot)
-                return (
-                    <NavLink key={spot.id} to={`spots/${spot.id}`}>
-                        <div>Name:{spot.name}</div>
-                        <div>Created by:{spot.User?.username}</div>
-                        <div>Address:{spot.address} {spot.city},{spot.state}</div>
-                        <div>Price: ${spot.price}</div>
-                        <img src={spot.imageUrl} alt="" />
-                    </NavLink>
-                )
-            })}
+            {sessionUser && <button onClick={e => { setShowForm(!showForm) }}>Create New Listing</button>}
+            {sessionUser && showForm && <NewSpotsForm showForm />}
+            <div className='spots-cont'>
+                {selectorSpots?.map((spot) => {
+                    // console.log(spot)
+                    return (
+                        <NavLink className='spot' key={spot.id} to={`spots/${spot.id}`}>
+                            <img src={spot.imageUrl} alt="" />
+                            <div>Name: {spot.name}</div>
+                            <div>Created by: {spot.User?.username}</div>
+                            <div>Address: {spot.address} {spot.city},{spot.state}</div>
+                            <div>Price: ${spot.price} per day</div>
+                        </NavLink>
+                    )
+                })}
+            </div>
         </div>
     )
 }
