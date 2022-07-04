@@ -22,7 +22,7 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
     const [name, setName] = useState(editSpot?.name)
     const [price, setPrice] = useState(editSpot?.price)
     const [imageUrl, setImageUrl] = useState(editSpot?.imageUrl)
-    const [edit,setEdit] = useState(false)
+    const [edit, setEdit] = useState(false)
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -68,16 +68,17 @@ const EditSpotPage = ({ pokemon, hideForm }) => {
                 <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
                 {/* <img src={imageUrl} alt="" /> */}
                 <button>Update Listing</button>
-                <button type='button' onClick={e=> setEdit(false)}>Cancel</button>
+                <button type='button' onClick={e => setEdit(false)}>Cancel</button>
             </form>}
-            <div>
+            <div className='listing-cont'>
+                <img src={imageUrl} alt="" />
                 <div>{editSpot?.name}</div>
                 <div>{editSpot?.address} {editSpot?.city},{editSpot?.state}</div>
                 <div>${editSpot?.price}/night</div>
-                <img src={imageUrl} alt="" />
-                {isOwner && <button onClick={e=> setEdit(true)}>Edit</button>}
-                {isOwner && <button onClick={onDelete}>Delete</button>
-}
+                <div className='edit-listing-btn'>
+                    {isOwner && <button onClick={e => setEdit(true)}>Edit</button>}
+                    {isOwner && <button onClick={onDelete}>Delete</button>}
+                </div>
             </div>
             {(sessionUser && !isOwner) && <ReviewForm />}
             <ReviewList />
