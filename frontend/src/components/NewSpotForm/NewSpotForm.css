@@ -1,0 +1,31 @@
+.new-spot-form {
+    margin-bottom: 10px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.new-spot-form label {
+    font-size: 20px;
+}
+.new-spot-form img {
+    width: 200px;
+}
+.new-spot-form button {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 19px;
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    font-family:'Times New Roman', Times, serif;
+    padding: 5px;
+    border-radius: 7px;
+    margin-left: 5px;
+}
+.new-spot-form label input {
+    width: 200px;
+    font-size: 18px;
+}

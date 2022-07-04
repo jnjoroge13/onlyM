@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
 import spots, { thunkAddSpot, thunkGetAllSpots } from '../../store/spots';
+import './NewSpotForm.css'
 
 export default function NewSpotsForm() {
     const dispatch = useDispatch()
@@ -60,14 +61,14 @@ export default function NewSpotsForm() {
                     </ul>
                 </div>
             )}
-            <form onSubmit={onSubmit}>
-                <label>address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
-                <label>city:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
-                <label>state:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
-                <label>name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
-                <label>price:<input type='number' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
-                <label>image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
-                <img src={imageUrl} alt="" />
+            <form className='new-spot-form' onSubmit={onSubmit}>
+                <label>Address:<input type='text' value={address} onChange={e => setAddress(e.target.value)} /></label>
+                <label>City:<input type='text' value={city} onChange={e => setCity(e.target.value)} /></label>
+                <label>State:<input type='text' value={state} onChange={e => setState(e.target.value)} /></label>
+                <label>Name:<input type='text' value={name} onChange={e => setName(e.target.value)} /></label>
+                <label>Price:<input type='number' placeholder='$' value={price} onChange={e => setPrice(e.target.value)} /></label>
+                <label>Image:<input type='text' value={imageUrl} onChange={e => setImageUrl(e.target.value)} /></label>
+                {imageUrl && <img src={imageUrl} alt="" />}
                 <button>Submit New Mansion</button>
             </form>
         </div>

@@ -59,6 +59,9 @@
     background-color: rgb(4, 171, 227);
     height: 100px;
     width: 200px;
+    z-index: 99;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 
 }
 .profile-dropdown li {
