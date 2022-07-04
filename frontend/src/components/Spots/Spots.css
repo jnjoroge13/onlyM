@@ -4,6 +4,9 @@
     grid-row-gap: 20px;
     grid-column-gap: 20px;
     padding: 20px;
+    max-height: 870px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .spot {
@@ -31,4 +34,24 @@
 
 .spot div {
    margin: 5px;
+}
+
+.new-listing-btn {
+    width: auto;
+    margin-left: 45%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    font-family:'Times New Roman', Times, serif;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.new-listing-btn:hover {
+    color: black;
 }

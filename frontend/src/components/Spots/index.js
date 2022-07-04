@@ -21,7 +21,7 @@ export default function Spots() {
     // }
     return (
         <div>
-            {sessionUser && <button onClick={e => { setShowForm(!showForm) }}>Create New Listing</button>}
+            {sessionUser && <button className='new-listing-btn' onClick={e => { setShowForm(!showForm) }}>Create New Listing</button>}
             {sessionUser && showForm && <NewSpotsForm showForm />}
             <div className='spots-cont'>
                 {selectorSpots?.map((spot) => {
