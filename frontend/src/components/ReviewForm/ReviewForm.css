@@ -1,0 +1,46 @@
+.review-form-cont {
+    max-width: 500px;
+    margin: 1rem auto;
+    padding:4rem;
+    border-radius: 20px;
+    /* border: 2px solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form-cont label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    font-size: 23px;
+    /* border: 2px solid; */
+}
+
+.review-form-cont textarea {
+    margin: 10px;
+    width: 300px;
+    height: 150px;
+}
+
+.review-form-cont select {
+    margin: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+.review-form-cont button {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 19px;
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    font-family:'Times New Roman', Times, serif;
+    padding: 6px;
+    border-radius: 7px;
+    margin-left: 5px;
+}
+
+.review-form-cont button:hover {
+    color: black;
+}
