@@ -13,7 +13,7 @@ export default function ReviewList() {
 
 
     const spotReviews = selectorReviews.filter(review => {
-        return(review.spotId == spotId)
+        return (review.spotId == spotId)
     })
 
 
@@ -22,19 +22,21 @@ export default function ReviewList() {
     }, [editSpot, sessionUser])
 
     return (
-        <div>
+        <div className='review-list'>
             {spotReviews?.map((review) => {
                 // console.log(review)
                 return (
-                    <div className='review'>
-                        {review.review && <div>Review:<br/>{review.review}</div>}
-                        <div>Rating:{review.rating} ⭐</div>
-                        <div>Created by:{review.User.username}</div>
-                        {(sessionUser?.id == review.userId) && <button className='review-delete-btn' onClick={async(e) => {
-                            e.preventDefault();
-                            // history.push(`/spots`)
-                            return await dispatch(thunkDeleteReview(review.id))
-                        }}>Delete</button>}
+                    <div className='review-single'>
+                        <div className='review-content'>
+                            <div>Review:<br />{review.review}</div>
+                            <div>Rating:{review.rating} ⭐</div>
+                            <div>Created by:{review.User.username}</div>
+                            {(sessionUser?.id == review.userId) && <button className='review-delete-btn' onClick={async (e) => {
+                                e.preventDefault();
+                                // history.push(`/spots`)
+                                return await dispatch(thunkDeleteReview(review.id))
+                            }}>Delete</button>}
+                        </div>
                     </div>
                 )
             })}
