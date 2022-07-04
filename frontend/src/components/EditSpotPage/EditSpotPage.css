@@ -23,7 +23,7 @@
     background-color: rgb(4, 171, 227);
     border: rgb(4, 171, 227);
     font-family:'Times New Roman', Times, serif;
-    padding: 5px;
+    padding: 6px;
     border-radius: 7px;
     margin-left: 5px;
 }
@@ -33,4 +33,45 @@
 .edit-spot-form label input {
     width: 200px;
     font-size: 18px;
+}
+
+.listing-cont {
+    /* border: 2px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    margin-left: 25%;
+    margin-top: 20px;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+.listing-cont img {
+    max-width: 900px;
+    border-radius: 5px;
+}
+
+.listing-cont div {
+    font-size: 25px;
+    font-family: sans-serif;
+    margin: 5px;
+}
+
+.edit-listing-btn button{
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 19px;
+    background-color: rgb(4, 171, 227);
+    border: rgb(4, 171, 227);
+    font-family:'Times New Roman', Times, serif;
+    padding: 6px;
+    border-radius: 7px;
+    margin-left: 5px;
+}
+
+.edit-listing-btn button:hover {
+    color: black;
 }
