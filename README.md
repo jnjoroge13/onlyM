@@ -1,4 +1,3 @@
-
 # Welcome to onlyMansions!
 
 onlyMansions is a website dedicated to matching mansion owners with potential short term renters. Based off of AirBnB, onlyMansions uses React and Redux on the frontend, with Express and Sequelize on the backend.
@@ -50,7 +49,9 @@ After cloning onlyMansions:
 <img width="1764" alt="Screen Shot 2022-07-04 at 6 03 09 PM" src="https://user-images.githubusercontent.com/93172512/177234313-e34e3253-6fd3-49dd-bca8-d5d9346125b2.png">
 
 ## Technical Implementation Details
+One of the main challeneges i had was loading the spot information on the edit page. I would constantly get errors that the page had undefined data because the state had not updated yet. This was fixed by using the '?' syntax after my data and putting that data in a useEffect so that as soon as it was in state it would load. There is most likely a better way of accomplishing this but finding this solution allowed me to continue with my project and come back to it during refactoring.
 
+![Screen Shot 2022-07-05 at 12 57 48 AM](https://user-images.githubusercontent.com/93172512/177279142-23259d20-d6b8-4e5e-bbc6-e37f89e7e773.png)
 
 ## Future Features
 
