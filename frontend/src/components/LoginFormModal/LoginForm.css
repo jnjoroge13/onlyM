@@ -7,6 +7,12 @@
     border-radius: 20px;
 }
 
+.login-form li {
+    list-style: none;
+    color: red;
+    font-size: 20px;
+}
+
 .login-form label {
     display: block;
     font-size: 25px;
