@@ -11,7 +11,7 @@
 }
 
 .spot {
-    border: 2px solid;
+    border: 2px solid rgb(192, 215, 235);
     width: 510px;
     text-decoration: none;
     font-size: 20px;
